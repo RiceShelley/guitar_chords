@@ -73,8 +73,8 @@ def draw_text(x_pos, y_pos, text, img, fill_bg=False, color=[255, 0, 0], bg_colo
                     img.write_pix(x + x_pos + xoffset, y + y_pos, bg_color[0], bg_color[1], bg_color[2])
         xoffset += width
 
-width = 1000 * 2
-height = 400 * 2
+width = 1000
+height = 400
 # draw background
 img_out = bmp_image("test.bmp", width, height)
 for x in range(width):
@@ -101,9 +101,6 @@ def render_triad(x_pos, y_pos, chord_type, note):
     draw_text(x_pos + 20, y_pos, note + " " + chord_type, img_out, True, bg_color=[25, 25, 25], width=13)
 
 render_triad(0, 0, "maj", "C")
-render_triad(1000, 0, "maj", "D")
-render_triad(0, 400, "maj", "G")
-render_triad(1000, 400, "maj", "E")
 
 img_out.write_img()
 
