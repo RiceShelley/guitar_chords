@@ -1,0 +1,35 @@
+current tunning: E A D G B E 
+0	1	2	3	4	5	6	7	8	9	10	11	12	
+
+E	F	F#/Gb	G	G#/Ab	A	A#/Bb	B	C	C#/Db	D	D#/Eb	E	
+A	A#/Bb	B	C	C#/Db	D	D#/Eb	E	F	F#/Gb	G	G#/Ab	A	
+D	D#/Eb	E	F	F#/Gb	G	G#/Ab	A	A#/Bb	B	C	C#/Db	D	
+G	G#/Ab	A	A#/Bb	B	C	C#/Db	D	D#/Eb	E	F	F#/Gb	G	
+B	C	C#/Db	D	D#/Eb	E	F	F#/Gb	G	G#/Ab	A	A#/Bb	B	
+E	F	F#/Gb	G	G#/Ab	A	A#/Bb	B	C	C#/Db	D	D#/Eb	E	
+
+staring at string 0
+['C', 'E', 'G']
+
+C	at fret 8 on E string
+E	at fret 7 on A string
+G	at fret 5 on D string
+staring at string 1
+['C', 'E', 'G']
+
+C	at fret 3 on A string
+E	at fret 2 on D string
+G	at fret 0 on G string
+staring at string 2
+['C', 'E', 'G']
+
+C	at fret 10 on D string
+E	at fret 9 on G string
+G	at fret 8 on B string
+staring at string 3
+['C', 'E', 'G']
+
+C	at fret 5 on G string
+E	at fret 5 on B string
+G	at fret 3 on E string
+done.
