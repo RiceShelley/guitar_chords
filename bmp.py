@@ -53,7 +53,7 @@ class bmp_image:
 
 def read_hex_img(filename):
         fhex = open(filename, "r")
-        pix_ln = fhex.readlines();
+        pix_ln = fhex.readlines()
         fhex.close()
         i = 0
         j = 0
@@ -79,29 +79,30 @@ def read_pix(f):
 def read_dib_head(f):
     print("<--- BMP DIB header info --->")
     f.seek(14)
-    print("DIB header len = " + str(int.from_bytes(f.read(4), byteorder='little', signed=False)))
-    print("bmp width = " + str(int.from_bytes(f.read(4), byteorder='little', signed=False)))
-    print("bmp height = " + str(int.from_bytes(f.read(4), byteorder='little', signed=False)))
-    print("color planes = " + str(int.from_bytes(f.read(2), byteorder='little', signed=False)))
-    print("bits per pix = " + str(int.from_bytes(f.read(2), byteorder='little', signed=False)))
-    print("compression method = " + str(int.from_bytes(f.read(4), byteorder='little', signed=False)))
-    print("raw img size = " + str(int.from_bytes(f.read(4), byteorder='little', signed=False)))
-    print("horizontal res (pix per metre) = " + str(int.from_bytes(f.read(4), byteorder='little', signed=True)))
-    print("vertical res (pix per metre) = " + str(int.from_bytes(f.read(4), byteorder='little', signed=True)))
-    print("number of colors = " + str(int.from_bytes(f.read(4), byteorder='little', signed=False)))
-    print("number of important colors = " + str(int.from_bytes(f.read(4), byteorder='little', signed=False)))
-    return 
+    data = {}
+    data["DIB_HEAD"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
+    data["BMP_WIDTH"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
+    data["BMP_HEIGHT"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
+    data["COLOR_PLANES"] = int.from_bytes(f.read(2), byteorder='little', signed=False)
+    data["BITS_PER_PIX"] = int.from_bytes(f.read(2), byteorder='little', signed=False)
+    data["COMPRESSION_METHOD"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
+    data["RAW_IMG_SIZE"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
+    data["HORZ_RES_PIX_PER_M"] = int.from_bytes(f.read(4), byteorder='little', signed=True)
+    data["VERT_RES_PIX_PER_M"] = int.from_bytes(f.read(4), byteorder='little', signed=True)
+    data["NUM_OF_COLORS"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
+    data["NUM_OF_IMP_COLORS"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
+    return data
 
 def read_bmp_head(f):
     print("<--- BMP header info --->")
     f.seek(0)
-    bmp_head = []
+    bmp_head = {}
     if f.read(2).decode() != "BM":
         print("Invalid BMP header")
         return
     # BMP file size in bytes
-    bmp_head.append(int.from_bytes(f.read(4), byteorder='little', signed=False))
+    bmp_head["FILE_SIZE"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
     f.seek(10)
     # BMP img data start addr
-    bmp_head.append(int.from_bytes(f.read(4), byteorder='little', signed=False))
+    bmp_head["IMG_DATA_START_ADDR"] = int.from_bytes(f.read(4), byteorder='little', signed=False)
     return bmp_head

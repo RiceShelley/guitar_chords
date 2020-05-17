@@ -1,3 +1,12 @@
+tunning = [
+    "E",
+    "A",
+    "D",
+    "G",
+    "B",
+    "E"
+]
+
 def int_to_note(num):
     notes = {
         0: "A",
@@ -103,7 +112,7 @@ def calc_sus2_tri_chord(note):
 
 def print_tunning():
     print("current tunning: ", end='')
-    for s in guitar_tunning:
+    for s in tunning:
         print(s, end=' ')
     print("")
 
@@ -111,7 +120,7 @@ def print_fret_board():
     for string in range(7):
         for i in range(13):
             if (string != 0):
-                print(int_to_note(note_to_int(guitar_tunning[string - 1]) + i) + "\t", end='')
+                print(int_to_note(note_to_int(tunning[string - 1]) + i) + "\t", end='')
             else:
                 print(str(i) + "\t", end='')
         print("")
@@ -127,9 +136,9 @@ def find_triad_lin_scan(tri_notes, starting_string=0):
     rtn = []
     while True:
         for fret in range(13):
-            freted_note = note_to_int(guitar_tunning[string]) + fret
+            freted_note = note_to_int(tunning[string]) + fret
             if (tri_notes[cur_note] == int_to_note(freted_note)):
-                rtn.append([string, freted_note, fret]);
+                rtn.append([string, freted_note, fret])
                 string += 1
                 cur_note += 1
                 break
@@ -137,7 +146,7 @@ def find_triad_lin_scan(tri_notes, starting_string=0):
                 string += 1
         if (cur_note == len(tri_notes)):
             break
-        elif (string == len(guitar_tunning) or string == -1):
+        elif (string == len(tunning) or string == -1):
             print("failed to construct chord.")
             return []
     return rtn
@@ -150,12 +159,3 @@ chord_types = {
     "sus4": calc_sus4_tri_chord,
     "sus2": calc_sus2_tri_chord
 }
-
-guitar_tunning = [
-    "E",
-    "A",
-    "D",
-    "G",
-    "B",
-    "E"
-]
